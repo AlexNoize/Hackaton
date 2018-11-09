@@ -12,8 +12,7 @@
 
 #define NB_MES 13
 
-=======
->>>>>>> 98037308103b5a113dcefa6f5750ef835e5da59c
+
 int main(int argc, char **argv)
 {
 
