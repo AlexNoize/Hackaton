@@ -6,12 +6,9 @@
 #include <mraa/aio.h>
 #include <mraa/uart.h>
 #include <unistd.h>
-#include <iostream>
 #include <string>
-
-
+#include <iostream>
 using namespace std;
-
 /*############ GPIO_GROVE ############## */
 
 class gpio_grove{

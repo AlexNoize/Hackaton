@@ -12,27 +12,33 @@
 
 using namespace std;
 
-float convert_temperature(float temp);
+//Conversion of the value read by the analog input
+const int B = 4275; //B value of the thermistor
+const int R0 = 100000; //R0 = 100kOhm
+//help : http://wiki.seeedstudio.com/Grove-Temperature_Sensor_V1.2/
+
+float convert_temperature(int temp);
 
 int main()
 {
     gpio_actuator led(2);
     aio_sensor temperature(0);
-    float temp_value_raw = 0.0;
+    int temp_value_raw = 0;
 
     while(1)
     {
-        temp_value_raw = temperature.aio_read_float();
-        cout << "La temperature est " << convert_temperature(temp_value_raw) << endl;
+        temp_value_raw = temperature.aio_read();
+        cout << "La temperature est de " << convert_temperature(temp_value_raw) << endl;
         led.toggle_actuator();
         sleep(1);
     }
     return 0;
 }
 
-float convert_temperature(float temp) {
-    float temp_value = 1023.0/temp-1.0;
+float convert_temperature(int temp) {
+    float R = 1023.0/temp-1.0;
+    R=R*R0;
 
     // convert to temperature via datasheet
-    return 1.0/(log(temp_value)/4275+1/298.15)-273.15;
+    return 1.0/(log(R/R0)/B+1.0/298.15)-273.15;
 }

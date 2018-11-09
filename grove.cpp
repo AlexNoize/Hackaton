@@ -1,10 +1,10 @@
-#include <mraa/i2c.h>
 #include <mraa/gpio.h>
 #include <mraa/aio.h>
-#include <mraa/uart.h>
 #include <unistd.h>
 #include <iostream>
 #include <string>
+#include <iostream>
+
 #include "grove.h"
 
 using namespace std;
@@ -114,9 +114,9 @@ aio_sensor::aio_sensor(const int port):aio_grove(port){}
 
 //METHODES
 int aio_sensor::aio_read() {
-  return mraa_aio_read (m_aio);
+  return mraa_aio_read(m_aio);
 }
 
 float  aio_sensor::aio_read_float() {
-  return mraa_aio_read_float (m_aio);
+  return mraa_aio_read_float(m_aio); //mraa_aio_read_float(m_aio)
 }
