@@ -4,8 +4,12 @@
 #include <iostream>
 #include <string>
 #include <iostream>
+#include <time.h>
+#include <sys/time.h>
+#include <time.h>
 
 #include "grove.h"
+
 
 using namespace std;
 
@@ -91,6 +95,30 @@ void gpio_actuator::toggle_actuator(){
         mraa_gpio_write(m_gpio, 1);
         State = 1;
     }
+}
+
+/*############ GPIO_ULTRASONIC_TRIGGER ############## */
+
+//CONSTRUCTEURS
+gpio_ultrasonic_trigger::gpio_ultrasonic_trigger(const int port):gpio_grove(port){
+    mraa_gpio_dir(m_gpio, MRAA_GPIO_OUT);
+    mraa_gpio_write(m_gpio, 0); //LOW
+}
+
+//METHODES
+void gpio_ultrasonic_trigger::pulse(int utime){
+    mraa_gpio_write(m_gpio, 0); //LOW
+    mraa_gpio_write(m_gpio, 1); //HIGH
+    usleep(utime); //pulse for 10 microseconds
+    mraa_gpio_write(m_gpio, 0); //LOW
+}
+
+/*############ GPIO_ULTRASONIC_ECHO ############## */
+
+//CONSTRUCTEURS
+gpio_ultrasonic_echo::gpio_ultrasonic_echo(const int port,  void(*fptr)(void*)):gpio_grove(port){
+    mraa_gpio_dir(m_gpio, MRAA_GPIO_IN);
+    mraa_gpio_isr(m_gpio, MRAA_GPIO_EDGE_BOTH, fptr, NULL);
 }
 
 /*############ AIO_GROVE ############## */

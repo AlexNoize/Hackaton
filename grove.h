@@ -51,6 +51,27 @@ class gpio_actuator : public gpio_grove {
 
 };//FIN CLASSE GPIO_ACTUATOR
 
+/*############ GPIO_ULTRASONIC_TRIGGER ############## */
+class gpio_ultrasonic_trigger : public gpio_grove {
+
+ public:
+  //CONSTRUCTEURS
+ gpio_ultrasonic_trigger(const int port);
+
+  //METHODS
+  void pulse(int utime);
+
+};//FIN CLASSE GPIO_ULTRASONIC_TRIGGER
+
+/*############ GPIO_ULTRASONIC_ECHO ############## */
+class gpio_ultrasonic_echo : public gpio_grove {
+
+ public:
+  //CONSTRUCTEURS
+ gpio_ultrasonic_echo(const int port,  void(*fptr)(void*));
+
+
+};//FIN CLASSE GPIO_ULTRASONIC
 
 /*############ AIO_GROVE ############## */
 
