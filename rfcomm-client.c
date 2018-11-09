@@ -1,3 +1,17 @@
+
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/socket.h>
+#include <bluetooth/bluetooth.h>
+#include <bluetooth/rfcomm.h>
+#include <unistd.h>
+#include <sys/socket.h>
+#include <bluetooth/bluetooth.h>
+#include <bluetooth/rfcomm.h>
+
+#define NB_MES 13
+
+int main(int argc, char **argv)
 {
 
     //int tableau[10] = {0,1,2,3,4,5,6,7,8,9};
@@ -23,7 +37,7 @@
     // set the connection parameters (who to connect to)
     addr.rc_family = AF_BLUETOOTH;
     addr.rc_channel = (uint8_t) 1;
-    str2ba( dest, &addr.rc_bdaddr );
+    str2ba(dest, &addr.rc_bdaddr);
 
     // connect to server
     status = connect(s, (struct sockaddr *)&addr, sizeof(addr));
